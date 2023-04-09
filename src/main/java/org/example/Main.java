@@ -29,6 +29,10 @@ public class Main {
         String pass = scanner.nextLine()  ;
         //newsMain newsMain = new newsMain();
         Connection con = null;
+
+
+
+
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -53,6 +57,19 @@ public class Main {
             DriverManager.registerDriver(driver);
             con = DriverManager.getConnection(urll, user, pass);
             Statement stt = con.createStatement();
+            System.out.println("enter the category name");
+            String sql1 = "Select * from Articles where category = '"+scanner.nextLine()+"'";
+            Statement sttt = con.createStatement();
+            ResultSet resultSet = sttt.executeQuery(sql1);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("id"));
+                System.out.println(resultSet.getString("ArticleTitle"));
+                System.out.println(resultSet.getString("author"));
+                System.out.println(resultSet.getString("PublicationDate"));
+                System.out.println(resultSet.getString("category"));
+                System.out.println(resultSet.getString("content"));
+            }
+
             for (docs d: m.response.getDocs()) {
                 String sql = "insert into articles values('" + d.getHeadline().getMain()
                         + "','" + d.getSource() + "','" + "1994/02/02" + "','"+d.getDocument_type()+"','"+d.getLead_paragraph()+"')";
