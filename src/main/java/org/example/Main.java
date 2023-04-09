@@ -17,8 +17,18 @@ public class Main {
 
     public static void main(String[] args) {
            String API_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=Wd8C9hK5fPz1jvGC4jPDa0Ibc0F0wRVu";
-        System.out.println("Hello world!");
-
+        System.out.println("Hello ");
+        String urll = "jdbc:sqlserver://localhost:1433;" +
+                "databaseName=newyork articles;" +
+                "encrypt=true;" +
+                "trustServerCertificate=true";
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter the user to access the database");
+        String user = scanner.nextLine()  ;
+        System.out.println("enter the user the password");
+        String pass = scanner.nextLine()  ;
+        //newsMain newsMain = new newsMain();
+        //Connection con = null;
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
