@@ -4,6 +4,10 @@ public class headline {
     String main;
     String kicker;
     String content_kicker;
+    String print_headline;
+    String name;
+    String seo;
+    String sub;
 
     public String getMain() {
         return main;
@@ -61,8 +65,5 @@ public class headline {
         this.sub = sub;
     }
 
-    String print_headline;
-    String name;
-    String seo;
-    String sub;
+
 }

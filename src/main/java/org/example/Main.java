@@ -40,12 +40,89 @@ public class Main {
             System.out.println("Cca2: " + m.getStatus());
             System.out.println("Copyright: " + m.getCopyright());
 
-            response response = gson.fromJson(json.toString(), response.class);
+            for (docs d: m.response.getDocs()) {
+                int i =1;
+                System.out.println(d);
+                int y =1;
+                for (multimedia  multimedia : d.getMultimedia()) {
+                    System.out.println("subtype: " + multimedia.getSubtype());
+                    System.out.println("caption: " + multimedia.getSubtype());
+                    System.out.println("credit: " + multimedia.getCredit());
+                    System.out.println("type: " + multimedia.getType());
+                    System.out.println("url: " + multimedia.getUrl());
+                    System.out.println("subType: " + multimedia.getSubType());
+                    System.out.println("crop_name: " + multimedia.getCrop_name());
+                    System.out.println("rank: " + multimedia.getRank());
+                    System.out.println("height: " + multimedia.getHeight());
+                    System.out.println("width: " + multimedia.getWidth());
+                    i++;
+
+                    for (keywords  keyword : d.getKeywords()) {
+                        int z=1;
+                        System.out.println("name: " + keyword.getName());
+                        System.out.println("value: " + keyword.getValue());
+                        System.out.println("major: " + keyword.getMajor());
+                        System.out.println("rank: " + keyword.getRank());
+                        System.out.println("value: " + keyword.getValue());
+
+
+
+
+                    }
+
+
+                }
+            }
+
+
+
+
+
+
 
             docs docs = gson.fromJson(json.toString(), docs.class);
             System.out.println("web_url: " + docs.getWeb_url());
             System.out.println("snippet: " + docs.getSnippet());
             System.out.println("lead_paragraph: " + docs.getLead_paragraph());
+            System.out.println("source: " + docs.getSource());
+            System.out.println("pub_date: " + docs.getPub_date());
+            System.out.println("document_type: " + docs.getDocument_type());
+            System.out.println("news_desk: " + docs.getNews_desk());
+            System.out.println("section_name: " + docs.getSection_name());
+            System.out.println("subsection_name: " + docs.getSubsection_name());
+            System.out.println("type_of_material: " + docs.getType_of_material());
+            System.out.println("_id: " + docs.get_id());
+            System.out.println("uri: " + docs.getUri());
+            System.out.println("word_count: " + docs.getWord_count());
+
+
+
+            meta meta = gson.fromJson(json.toString(), meta.class);
+            System.out.println("hits: " + meta.getHits());
+            System.out.println("offset: " + meta.getOffset());
+            System.out.println("time: " + meta.getTime());
+
+
+
+
+
+
+            legacy legacy = gson.fromJson(json.toString(), legacy.class);
+            System.out.println("xlarge: " + legacy.getXlarge());
+            System.out.println("xlargewidth: " + legacy.getXlargewidth());
+            System.out.println("xlargeheight: " + legacy.getXlargeheight());
+
+
+            headline headline = gson.fromJson(json.toString(), headline.class);
+            System.out.println("main: " + headline.getMain());
+            System.out.println("kicker: " + headline.getKicker());
+            System.out.println("content_kicker: " + headline.getContent_kicker());
+            System.out.println("print_headline: " + headline.getPrint_headline());
+            System.out.println("name: " + headline.getName());
+            System.out.println("seo: " + headline.getSeo());
+            System.out.println("sub: " + headline.getSub());
+
+
 
 
         } catch (ProtocolException ex) {
