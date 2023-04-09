@@ -8,7 +8,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import com.google.gson.Gson;
 import java.util.Scanner;
-
+import java.sql.*;
 
 public class Main {
 
@@ -28,7 +28,7 @@ public class Main {
         System.out.println("enter the user the password");
         String pass = scanner.nextLine()  ;
         //newsMain newsMain = new newsMain();
-        //Connection con = null;
+        Connection con = null;
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -49,8 +49,14 @@ public class Main {
             newYorkArticle m = gson.fromJson(json.toString(), newYorkArticle.class);
             System.out.println("Cca2: " + m.getStatus());
             System.out.println("Copyright: " + m.getCopyright());
-
+            Driver driver = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+            DriverManager.registerDriver(driver);
+            con = DriverManager.getConnection(urll, user, pass);
+            Statement stt = con.createStatement();
             for (docs d: m.response.getDocs()) {
+                String sql = "insert into articles values('" + d.getHeadline().getMain()
+                        + "','" + d.getSource() + "','" + "1994/02/02" + "','"+d.getDocument_type()+"','"+d.getLead_paragraph()+"')";
+                stt.execute(sql);
                 int i =1;
                 System.out.println(d);
                 int y =1;
@@ -83,10 +89,6 @@ public class Main {
 
                 }
             }
-
-
-
-
 
 
 
@@ -141,10 +143,15 @@ public class Main {
             throw new RuntimeException(ex);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
-
-
-
 
 
     }
